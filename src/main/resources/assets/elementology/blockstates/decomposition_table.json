@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "elementology:block/decomposition_table"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "item.elementology.fire_element": "火焰元素",
+  "item.elementology.water_element": "水流元素",
+  "item.elementology.earth_element": "大地元素",
+  "item.elementology.air_element": "空气元素",
+  "item.elementology.mixed_element": "元素混合物",
+  "block.elementology.decomposition_table": "元素分解台"
+}
