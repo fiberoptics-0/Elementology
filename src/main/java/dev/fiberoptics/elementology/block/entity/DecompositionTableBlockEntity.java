@@ -1,6 +1,7 @@
 package dev.fiberoptics.elementology.block.entity;
 
 import dev.fiberoptics.elementology.block.DecompositionTableBlock;
+import dev.fiberoptics.elementology.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -12,6 +13,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -107,5 +112,53 @@ public class DecompositionTableBlockEntity extends BlockEntity implements MenuPr
         itemHandler.deserializeNBT(tag.getCompound("inventory"));
         progress = tag.getInt("progress");
         super.load(tag);
+    }
+
+    public void tick(Level level, BlockPos pos, BlockState state) {
+        if(hasRecipe()) {
+            increaseCraftingProgress();
+            setChanged(level, pos, state);
+            if(progressFinished()) {
+                craftItem();
+                resetProgress();
+            }
+        } else {
+            resetProgress();
+        }
+    }
+
+    private void craftItem() {
+        ItemStack result = new ItemStack(ModItems.MIXED_ELEMENT.get());
+        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
+        this.itemHandler.setStackInSlot(OUTPUT_SLOT, result);
+    }
+
+    private boolean hasRecipe() {
+        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == Items.WATER_BUCKET;
+        ItemStack result = new ItemStack(ModItems.MIXED_ELEMENT.get());
+        return hasCraftingItem && canInsertAmountIntoOutput(result.getCount()) &&
+                canInsertItemIntoOutput(result.getItem());
+    }
+
+    private boolean canInsertItemIntoOutput(Item item) {
+        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).is(item) ||
+                this.itemHandler.getStackInSlot(INPUT_SLOT).isEmpty();
+    }
+
+    private boolean canInsertAmountIntoOutput(int count) {
+        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + count <=
+                        this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
+    }
+
+    private void increaseCraftingProgress() {
+        progress++;
+    }
+
+    private boolean progressFinished() {
+        return progress >= maxProgress;
+    }
+
+    private void resetProgress() {
+        progress = 0;
     }
 }
