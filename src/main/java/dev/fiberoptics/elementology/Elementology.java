@@ -1,6 +1,7 @@
 package dev.fiberoptics.elementology;
 
 import dev.fiberoptics.elementology.block.ModBlocks;
+import dev.fiberoptics.elementology.block.entity.ModBlockEntities;
 import dev.fiberoptics.elementology.item.ModItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -17,6 +18,7 @@ public class Elementology {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModBlockEntities.register(eventBus);
         eventBus.addListener(this::clientSetup);
     }
 
