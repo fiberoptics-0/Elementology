@@ -1,7 +1,9 @@
 package dev.fiberoptics.elementology.menu;
 
 import dev.fiberoptics.elementology.Elementology;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,7 +23,6 @@ public class ModMenuTypes {
             (String name, IContainerFactory<T> factory) {
         return MENUS.register(name,() -> IForgeMenuType.create(factory));
     }
-
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);
