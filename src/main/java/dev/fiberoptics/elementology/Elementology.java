@@ -3,6 +3,7 @@ package dev.fiberoptics.elementology;
 import dev.fiberoptics.elementology.block.ModBlocks;
 import dev.fiberoptics.elementology.block.entity.ModBlockEntities;
 import dev.fiberoptics.elementology.item.ModItems;
+import dev.fiberoptics.elementology.screen.AbstractCrafterScreen;
 import dev.fiberoptics.elementology.screen.DecompositionTableScreen;
 import dev.fiberoptics.elementology.menu.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
