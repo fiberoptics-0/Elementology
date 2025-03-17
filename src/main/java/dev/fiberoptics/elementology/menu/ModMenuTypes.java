@@ -1,4 +1,4 @@
-package dev.fiberoptics.elementology.screen;
+package dev.fiberoptics.elementology.menu;
 
 import dev.fiberoptics.elementology.Elementology;
 import net.minecraft.world.inventory.AbstractContainerMenu;

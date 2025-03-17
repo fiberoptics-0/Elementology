@@ -2,13 +2,13 @@ package dev.fiberoptics.elementology.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.fiberoptics.elementology.Elementology;
+import dev.fiberoptics.elementology.menu.DecompositionTableMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.level.block.Blocks;
 
 public class DecompositionTableScreen extends AbstractContainerScreen<DecompositionTableMenu> {
 

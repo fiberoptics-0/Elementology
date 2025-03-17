@@ -1,8 +1,7 @@
 package dev.fiberoptics.elementology.block.entity;
 
-import dev.fiberoptics.elementology.block.DecompositionTableBlock;
 import dev.fiberoptics.elementology.item.ModItems;
-import dev.fiberoptics.elementology.screen.DecompositionTableMenu;
+import dev.fiberoptics.elementology.menu.DecompositionTableMenu;
 import dev.fiberoptics.elementology.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,7 +19,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;

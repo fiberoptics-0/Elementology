@@ -1,4 +1,4 @@
-package dev.fiberoptics.elementology.screen;
+package dev.fiberoptics.elementology.menu;
 
 import dev.fiberoptics.elementology.block.ModBlocks;
 import dev.fiberoptics.elementology.block.entity.DecompositionTableBlockEntity;
@@ -11,7 +11,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.Nullable;
 
 public class DecompositionTableMenu extends AbstractContainerMenu {
     public final DecompositionTableBlockEntity blockEntity;
