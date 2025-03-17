@@ -14,7 +14,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, Elementology.MODID);
 
     public static RegistryObject<Item> MIXED_ELEMENT = ITEMS.register("mixed_element",
-            () -> new Item(new Item.Properties().stacksTo(1)));
+            () -> new MixedElementItem(new Item.Properties().stacksTo(1)));
 
     public static RegistryObject<Item> FIRE_ELEMENT = ITEMS.register("fire_element",
             () -> new Item(new Item.Properties()));

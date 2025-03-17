@@ -2,6 +2,8 @@ package dev.fiberoptics.elementology.block.entity;
 
 import dev.fiberoptics.elementology.block.DecompositionTableBlock;
 import dev.fiberoptics.elementology.item.ModItems;
+import dev.fiberoptics.elementology.screen.DecompositionTableMenu;
+import dev.fiberoptics.elementology.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -96,8 +98,8 @@ public class DecompositionTableBlockEntity extends BlockEntity implements MenuPr
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return
+    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
+        return new DecompositionTableMenu(containerId,inventory,this,this.data);
     }
 
     @Override
@@ -129,12 +131,14 @@ public class DecompositionTableBlockEntity extends BlockEntity implements MenuPr
 
     private void craftItem() {
         ItemStack result = new ItemStack(ModItems.MIXED_ELEMENT.get());
+        result.setTag(Utils.generateElementComposition(0.5f,1,0,0));
         this.itemHandler.extractItem(INPUT_SLOT, 1, false);
+        this.itemHandler.setStackInSlot(INPUT_SLOT, new ItemStack(Items.BUCKET));
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, result);
     }
 
     private boolean hasRecipe() {
-        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == Items.WATER_BUCKET;
+        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT).is(Items.WATER_BUCKET);
         ItemStack result = new ItemStack(ModItems.MIXED_ELEMENT.get());
         return hasCraftingItem && canInsertAmountIntoOutput(result.getCount()) &&
                 canInsertItemIntoOutput(result.getItem());
@@ -142,7 +146,7 @@ public class DecompositionTableBlockEntity extends BlockEntity implements MenuPr
 
     private boolean canInsertItemIntoOutput(Item item) {
         return this.itemHandler.getStackInSlot(OUTPUT_SLOT).is(item) ||
-                this.itemHandler.getStackInSlot(INPUT_SLOT).isEmpty();
+                this.itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty();
     }
 
     private boolean canInsertAmountIntoOutput(int count) {
@@ -151,14 +155,14 @@ public class DecompositionTableBlockEntity extends BlockEntity implements MenuPr
     }
 
     private void increaseCraftingProgress() {
-        progress++;
+        this.progress++;
     }
 
     private boolean progressFinished() {
-        return progress >= maxProgress;
+        return this.progress >= this.maxProgress;
     }
 
     private void resetProgress() {
-        progress = 0;
+        this.progress = 0;
     }
 }
